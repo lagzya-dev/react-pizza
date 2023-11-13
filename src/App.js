@@ -1,10 +1,20 @@
+import React from 'react';
 import './scss/app.scss';
 import Header from './Components/Header';
 import Categories from './Components/Categories';
 import Sort from './Components/Sort';
 import Pizza from './Components/Pizza';
-import pizzas from './assets/pizza.json';
+import axios from 'axios';
 function App() {
+  const [pizzas, setPizzas] = React.useState([]);
+  React.useEffect(() => {
+    async function fetchData() {
+      const responce = await axios.get('https://6551fa295c69a77903295da1.mockapi.io/api/pizzas');
+      setPizzas(responce.data);
+      console.log(123);
+    }
+    fetchData();
+  }, []);
   return (
     <div className='wrapper'>
       <Header />
