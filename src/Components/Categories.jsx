@@ -12,7 +12,7 @@ function Categories() {
       <ul className='flex-wrap'>
         {categories.map((category, index) => (
           <li
-            key={index}
+            key={category}
             onClick={() => onClickSelect(index)}
             className={`mb-15 ${activeCategory === index ? 'active' : ''}`}
           >

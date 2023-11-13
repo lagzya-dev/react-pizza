@@ -3,7 +3,7 @@ import React from 'react';
 function Pizza({ title, price, imageUrl, sizes, types }) {
   const typesNames = ['тонкое', 'традиционное'];
   const [pizzaCount, setPizzaCount] = React.useState(0);
-  const [activeType, setActiveType] = React.useState(0);
+  const [activeType, setActiveType] = React.useState(types[0]);
   const [activeSize, setActiveSize] = React.useState(0);
   const onClickAdd = () => {
     setPizzaCount((prev) => prev + 1);
@@ -21,7 +21,7 @@ function Pizza({ title, price, imageUrl, sizes, types }) {
           {types.map((type, index) => (
             <li
               className={activeType === type ? 'active' : 'inactive'}
-              key={index}
+              key={type}
               onClick={() => setActiveType(index)}
             >
               {typesNames[type]}
@@ -33,7 +33,7 @@ function Pizza({ title, price, imageUrl, sizes, types }) {
             <li
               className={activeSize === index ? 'active' : ''}
               onClick={() => setActiveSize(index)}
-              key={index}
+              key={size}
             >
               {size} см
             </li>
