@@ -1,8 +1,7 @@
 import React from 'react';
-
-function Categories() {
-  const [activeCategory, setActiveCategory] = React.useState(0);
+function Categories({ activeCategory, setActiveCategory }) {
   const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
+
   const onClickSelect = (index) => {
     setActiveCategory(index);
   };
