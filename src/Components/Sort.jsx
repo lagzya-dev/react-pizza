@@ -11,13 +11,29 @@ export const sorts = [
 function Sort() {
   const [isVisible, setIsVisible] = React.useState(false);
   const selectSort = useSelector((state) => state.filter.sort);
+  const sortRef = React.useRef();
   const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (sortRef.current && !sortRef.current.contains(event.target)) {
+        setIsVisible(false);
+      }
+    };
+
+    document.body.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.body.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
   const onClickSelect = (obj) => {
     dispatch(setSort(obj));
     setIsVisible(false);
   };
+
   return (
-    <div className="sort">
+    <div ref={sortRef} className="sort">
       <div className="sort__label">
         <svg
           width="10"

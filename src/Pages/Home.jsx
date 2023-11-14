@@ -23,7 +23,6 @@ function Home() {
   const currentPage = useSelector((state) => state.filter.currentPage);
   const [items, setItems] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
-  //const [activeCategory, setActiveCategory] = React.useState(0);
   const selectSort = useSelector((state) => state.filter.sort);
   const searchValue = useSelector((state) => state.filter.searchValue);
 

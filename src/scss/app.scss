@@ -1,6 +1,7 @@
 @import './variables';
 @import './libs/normalize';
 @import './components/all';
+@import 'macro-css';
 
 @tailwind base;
 @tailwind components;

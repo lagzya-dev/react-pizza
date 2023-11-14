@@ -8,9 +8,8 @@
   min-width: 100px;
   text-align: center;
   cursor: pointer;
-  transition:
-    background-color $duration ease-in-out,
-    border-color $duration ease-in-out;
+  transition: background-color $duration ease-in-out,
+  border-color $duration ease-in-out;
   border: 1px solid transparent;
   @include noselect();
 
@@ -58,6 +57,7 @@
   &--outline {
     background-color: #fff;
     border-color: $orange;
+
     &,
     span {
       color: $orange;
@@ -100,6 +100,7 @@
   &--add {
     svg {
       margin-right: 2px;
+
     }
 
     span {
