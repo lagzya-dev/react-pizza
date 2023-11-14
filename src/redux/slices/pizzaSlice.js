@@ -12,7 +12,10 @@ export const fetchPizzas = createAsyncThunk(
           : `category=${activeCategory}&sortBy=${selectSort.sortProperty}&order=desc`
       }`,
     );
-    return data;
+    if (data.length === 0) {
+      return thunkAPI.rejectWithValue(`Нет товаров для запроса`);
+    }
+    return thunkAPI.fulfillWithValue(data);
   },
 );
 const initialState = {

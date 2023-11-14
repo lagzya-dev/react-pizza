@@ -10,7 +10,6 @@ function App() {
   return (
     <div className="wrapper">
       <Header />
-
       <div className="content">
         <Routes>
           <Route path="/" element={<Home />} />
