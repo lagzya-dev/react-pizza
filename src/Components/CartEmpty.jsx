@@ -4,9 +4,7 @@ import { Link } from 'react-router-dom';
 function CartEmpty() {
   return (
     <div className="cart cart--empty mt-20">
-      <h2 className={'font-bold'}>
-        Корзина пустая <icon>😕</icon>
-      </h2>
+      <h2 className={'font-bold'}>Корзина пустая 😕</h2>
       <p>
         Вероятней всего, вы не заказывали ещё пиццу.
         <br />
