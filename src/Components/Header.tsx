@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Search from './Search';
 import { useSelector } from 'react-redux';
-import { selectCart } from '../redux/slices/cartSlice';
+import { ItemCart, selectCart } from '../redux/slices/cartSlice';
 
-export default function Header() {
+const Header: React.FC = () => {
   const { items, totalPrice } = useSelector(selectCart);
 
   return (
@@ -53,10 +53,13 @@ export default function Header() {
                 strokeLinejoin="round"
               />
             </svg>
-            <span>{items.reduce((acc, crr) => acc + crr.count, 0)}</span>
+            <span>
+              {items.reduce((acc: number, crr: ItemCart) => acc + crr.count, 0)}
+            </span>
           </Link>
         </div>
       </div>
     </div>
   );
-}
+};
+export default Header;

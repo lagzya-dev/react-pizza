@@ -1,5 +1,5 @@
-import React from 'react';
 import styles from './NotFoundBlock.module.scss';
+
 function index() {
   return (
     <div className={styles.root}>

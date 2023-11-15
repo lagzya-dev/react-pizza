@@ -1,12 +1,12 @@
-import React from 'react';
 import './scss/app.scss';
 import Header from './Components/Header';
 import Cart from './Pages/Cart';
 import Home from './Pages/Home';
 import NotFound from './Pages/NotFound';
 import { Route, Routes } from 'react-router-dom';
+import React from 'react';
 
-function App() {
+const App: React.FC = () => {
   return (
     <div className="wrapper">
       <Header />
@@ -19,6 +19,6 @@ function App() {
       </div>
     </div>
   );
-}
+};
 
 export default App;

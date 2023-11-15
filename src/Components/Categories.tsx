@@ -1,5 +1,14 @@
 import React from 'react';
-function Categories({ activeCategory, setActiveCategory, tdsdsads }) {
+
+type CategoriesProps = {
+  activeCategory: number;
+  setActiveCategory: (idx: number) => void;
+};
+
+const Categories: React.FC<CategoriesProps> = ({
+  activeCategory,
+  setActiveCategory,
+}) => {
   const categories = [
     'Все',
     'Мясные',
@@ -9,7 +18,7 @@ function Categories({ activeCategory, setActiveCategory, tdsdsads }) {
     'Закрытые',
   ];
 
-  const onClickSelect = (index) => {
+  const onClickSelect = (index: number) => {
     setActiveCategory(index);
   };
 
@@ -28,6 +37,6 @@ function Categories({ activeCategory, setActiveCategory, tdsdsads }) {
       </ul>
     </div>
   );
-}
+};
 
 export default Categories;

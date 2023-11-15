@@ -1,7 +1,7 @@
 import React from 'react';
 import ContentLoader from 'react-content-loader';
 
-const Skeleton = () => (
+const Skeleton: React.FC = () => (
   <div className="d-flex justify-center">
     <ContentLoader
       speed={2}

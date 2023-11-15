@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import CartItem from '../Components/CartItem';
-import { clearCart, selectCart } from '../redux/slices/cartSlice';
+import { clearCart, ItemCart, selectCart } from '../redux/slices/cartSlice';
 import CartEmpty from '../Components/CartEmpty';
+import { useAppDispatch } from '../redux/store';
 
-function Cart() {
-  const dispatch = useDispatch();
+const Cart: React.FC = () => {
+  const dispatch = useAppDispatch();
   const { items, totalPrice } = useSelector(selectCart);
   return (
     <div className="container--cart container">
@@ -85,13 +86,18 @@ function Cart() {
                 ></path>
               </svg>
 
-              <span onClick={() => dispatch(clearCart())}>
+              <span
+                onClick={() => {
+                  // @ts-ignore
+                  return dispatch(clearCart());
+                }}
+              >
                 Очистить корзину
               </span>
             </div>
           </div>
           <div className="content__items">
-            {items.map((item) => (
+            {items.map((item: ItemCart) => (
               <CartItem key={item.id} {...item} />
             ))}
           </div>
@@ -100,7 +106,13 @@ function Cart() {
               <span>
                 {' '}
                 Всего пицц:{' '}
-                <b>{items.reduce((acc, crr) => acc + crr.count, 0)} шт.</b>{' '}
+                <b>
+                  {items.reduce(
+                    (acc: number, crr: ItemCart) => acc + crr.count,
+                    0,
+                  )}{' '}
+                  шт.
+                </b>{' '}
               </span>
               <span>
                 {' '}
@@ -139,6 +151,6 @@ function Cart() {
       )}
     </div>
   );
-}
+};
 
 export default Cart;

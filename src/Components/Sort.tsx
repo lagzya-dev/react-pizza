@@ -1,22 +1,23 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setSort } from '../redux/slices/filterSlice';
+import { useSelector } from 'react-redux';
+import { selectFilters, setSort, Sort } from '../redux/slices/filterSlice';
+import { useAppDispatch } from '../redux/store';
 
-export const sorts = [
+export const sorts: Array<Sort> = [
   { name: 'популярности', sortProperty: 'rating' },
   { name: 'цене', sortProperty: 'price' },
   { name: 'алфавиту', sortProperty: 'title' },
 ];
 
-function Sort() {
+const SortComponent: React.FC = () => {
   const [isVisible, setIsVisible] = React.useState(false);
-  const selectSort = useSelector((state) => state.filter.sort);
-  const sortRef = React.useRef();
-  const dispatch = useDispatch();
+  const { sort } = useSelector(selectFilters);
+  const sortRef = React.useRef<HTMLDivElement>(null);
+  const dispatch = useAppDispatch();
 
   React.useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (sortRef.current && !sortRef.current.contains(event.target)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (sortRef.current && !sortRef.current.contains(event.target as Node)) {
         setIsVisible(false);
       }
     };
@@ -27,7 +28,7 @@ function Sort() {
       document.body.removeEventListener('click', handleClickOutside);
     };
   }, []);
-  const onClickSelect = (obj) => {
+  const onClickSelect = (obj: Sort) => {
     dispatch(setSort(obj));
     setIsVisible(false);
   };
@@ -48,9 +49,7 @@ function Sort() {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span onClick={() => setIsVisible((prev) => !prev)}>
-          {selectSort.name}
-        </span>
+        <span onClick={() => setIsVisible((prev) => !prev)}>{sort?.name}</span>
       </div>
       {isVisible && (
         <div className="sort__popup">
@@ -60,7 +59,7 @@ function Sort() {
                 key={index}
                 onClick={() => onClickSelect(sort)}
                 className={
-                  selectSort.sortProperty === sort.sortProperty ? 'active' : ''
+                  sort?.sortProperty === sort.sortProperty ? 'active' : ''
                 }
               >
                 {sort.name}
@@ -71,6 +70,6 @@ function Sort() {
       )}
     </div>
   );
-}
+};
 
-export default Sort;
+export default SortComponent;

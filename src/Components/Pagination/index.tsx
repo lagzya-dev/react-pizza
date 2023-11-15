@@ -2,7 +2,13 @@ import React from 'react';
 import ReactPaginate from 'react-paginate';
 import styles from './Pagination.module.scss';
 
-function Pagination({ currentPage, onChangePage }) {
+function Pagination({
+  currentPage,
+  onChangePage,
+}: {
+  currentPage: number;
+  onChangePage: (page: number) => void;
+}) {
   return (
     <ReactPaginate
       className={styles.root}
